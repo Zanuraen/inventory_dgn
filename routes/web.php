@@ -37,7 +37,7 @@ Route::middleware('auth')->group(function () {
     // === fitur pengaturan & kategori ====
     Route::get('/settings', [SettingController::class, 'index'])->name('settings.index');
     Route::put('/settings/company', [SettingController::class, 'updateCompany'])->name('settings.company.update');
-    Route::resource('categories', CategoryController::class)->except('show'); // dipakai di dalam Settings (Kategori & Kode Aset)
+    Route::resource('categories', CategoryController::class)->except('show');
 
     // === fitur laporan ====
     Route::get('/laporan', [ReportController::class, 'index'])->name('reports.index');

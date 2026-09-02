@@ -2,63 +2,88 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Category;
 use Illuminate\Http\Request;
 
 class CategoryController extends Controller
 {
     /**
-     * Display a listing of the resource.
+     * Tampilkan daftar semua kategori.
      */
     public function index()
     {
-        //
+        $categories = Category::withCount('assets')->latest()->paginate(10);
+
+        return view('categories.index', compact('categories'));
     }
 
     /**
-     * Show the form for creating a new resource.
+     * Tampilkan form tambah kategori.
      */
     public function create()
     {
-        //
+        return view('categories.create');
     }
 
     /**
-     * Store a newly created resource in storage.
+     * Simpan kategori baru ke database.
      */
     public function store(Request $request)
     {
-        //
+        $validated = $request->validate([
+            'name'        => 'required|string|max:255',
+            'code'        => 'required|string|max:20|unique:categories,code',
+            'description' => 'nullable|string',
+        ]);
+
+        Category::create($validated);
+
+        return redirect()
+            ->route('categories.index')
+            ->with('success', 'Kategori berhasil ditambahkan.');
     }
 
     /**
-     * Display the specified resource.
+     * Tampilkan form edit kategori.
      */
-    public function show(string $id)
+    public function edit(Category $category)
     {
-        //
+        return view('categories.edit', compact('category'));
     }
 
     /**
-     * Show the form for editing the specified resource.
+     * Update kategori yang sudah ada.
      */
-    public function edit(string $id)
+    public function update(Request $request, Category $category)
     {
-        //
+        $validated = $request->validate([
+            'name'        => 'required|string|max:255',
+            'code'        => 'required|string|max:20|unique:categories,code,' . $category->id,
+            'description' => 'nullable|string',
+        ]);
+
+        $category->update($validated);
+
+        return redirect()
+            ->route('categories.index')
+            ->with('success', 'Kategori berhasil diperbarui.');
     }
 
     /**
-     * Update the specified resource in storage.
+     * Hapus kategori.
      */
-    public function update(Request $request, string $id)
+    public function destroy(Category $category)
     {
-        //
-    }
+        if ($category->assets()->exists()) {
+            return redirect()
+                ->route('categories.index')
+                ->with('error', 'Kategori tidak bisa dihapus karena masih dipakai oleh aset.');
+        }
 
-    /**
-     * Remove the specified resource from storage.
-     */
-    public function destroy(string $id)
-    {
-        //
+        $category->delete();
+
+        return redirect()
+            ->route('categories.index')
+            ->with('success', 'Kategori berhasil dihapus.');
     }
 }
