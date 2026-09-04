@@ -9,6 +9,12 @@
 
     @vite(['resources/css/app.css', 'resources/js/app.js'])
 </head>
+{{-- resources/views/components/layouts/app.blade.php, sebelum </body> --}}
+<x-assets.detail-modal />
+<x-assets.handover-pilih-jenis />
+<x-assets.handover-form-fisik />
+<x-assets.handover-form-digital />
+<x-assets.handover-pengembalian />
 <body class="h-full bg-bg-page font-sans text-text-primary antialiased">
     <div x-data="{ sidebarOpen: false }" class="flex h-full">
 
