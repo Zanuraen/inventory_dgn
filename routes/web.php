@@ -3,6 +3,9 @@
 use App\Http\Controllers\CategoryController;
 use App\Http\Controllers\SettingController;
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\AssetController;
+use App\Http\Controllers\AssetHandoverController;
+
 
 Route::get('/', function () {
     return view('welcome');
@@ -31,3 +34,8 @@ Route::resource('categories', CategoryController::class)->except('show'); // dip
 // Route::get('/aktivitas', [ActivityLogController::class, 'index'])->name('activity.index');
 
 // Route::get('/account', [AccountController::class, 'edit'])->name('account');
+
+Route::resource('assets', AssetController::class);
+Route::get('assets/{asset}/detail', [AssetController::class, 'detail'])->name('assets.detail');
+Route::post('assets/{asset}/handovers', [AssetHandoverController::class, 'store'])->name('handovers.store');
+Route::post('handovers/{handover}/kembalikan', [AssetHandoverController::class, 'kembalikan'])->name('handovers.kembalikan');
