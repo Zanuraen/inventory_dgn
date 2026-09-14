@@ -146,8 +146,8 @@ class AssetController extends Controller
 
     public function detail(Asset $asset)
     {
-        // Eager load supaya tidak N+1 query saat looping handovers
-        $asset->load('category', 'handovers');
+        // Eager load supaya tidak N+1 query saat looping handovers, maintenances
+        $asset->load('category', 'handovers', 'maintenances');
 
         return response()->json([
             'id'               => $asset->id,
@@ -170,6 +170,19 @@ class AssetController extends Controller
                     'tanggal_pinjam' => $h->tanggal_pinjam->format('d M Y'),
                     'status'         => $h->status,
                     'file_path'      => $h->file_path ? asset('storage/' . $h->file_path) : null,
+                ];
+            }),
+             'maintenances' => $asset->maintenances
+            ->sortByDesc('maintenance_date')
+            ->values()
+            ->map(function ($m) {
+                return [
+                    'id'                  => $m->id,
+                    'jenis_pemeliharaan'  => $m->jenis_pemeliharaan,
+                    'maintenance_date'    => $m->maintenance_date->translatedFormat('d M Y'),
+                    'jatuh_tempo'         => $m->jatuh_tempo->translatedFormat('d M Y'),
+                    'vendor'              => $m->vendor,
+                    'status'              => $m->status,
                 ];
             }),
         ]);
