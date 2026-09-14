@@ -28,7 +28,7 @@
                 <!-- Logo -->
                 <div class="mb-10">
                     <img
-                        src="{{ asset('images/logo.png') }}"
+                        src="{{ asset('images/logo-dgn.png') }}"
                         alt="Inventory DGN"
                         class="w-32 h-auto object-contain"
                     >
@@ -214,25 +214,25 @@
                         @csrf
 
 
-                        <!-- Email -->
+                        <!-- Nama Pengguna -->
                         <div>
 
                             <label
-                                for="email"
+                                for="name"
                                 class="block text-sm font-medium text-slate-700 mb-2"
                             >
-                                Email
+                                Nama Pengguna
                             </label>
 
                             <input
-                                id="email"
-                                type="email"
-                                name="email"
-                                value="{{ old('email') }}"
+                                id="name"
+                                type="text"
+                                name="name"
+                                value="{{ old('name') }}"
                                 required
                                 autofocus
                                 autocomplete="username"
-                                placeholder="Masukkan email Anda"
+                                placeholder="Masukkan nama pengguna Anda"
                                 class="w-full rounded-xl border-slate-300 bg-slate-50 px-4 py-3 text-sm text-slate-900 placeholder-slate-400 focus:border-blue-500 focus:ring-blue-500 transition"
                             >
 
