@@ -2,6 +2,7 @@
 
 @section('title', 'Laporan Aset')
 
+
 @section('content')
 
 <div class="bg-[#0A4C62] text-white rounded-lg p-6 mb-6">
