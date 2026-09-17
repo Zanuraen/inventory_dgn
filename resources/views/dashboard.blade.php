@@ -1,3 +1,4 @@
+
 <x-layouts.app title="Dashboard">
 
     <x-header-banner
@@ -161,3 +162,4 @@
 
     </div>
 </x-layouts.app>
+
