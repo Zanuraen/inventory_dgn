@@ -4,7 +4,11 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>@yield('title', 'Inventaris Kantor')</title>
+    @if (file_exists(public_path('build/manifest.json')) || file_exists(public_path('hot')))
+    @vite(['resources/css/app.css', 'resources/js/app.js'])
+@else
     <script src="https://cdn.tailwindcss.com"></script>
+@endif
 </head>
 <body class="bg-[#F8F9FC]">
 
@@ -62,7 +66,7 @@
             {{-- Account button --}}
             <div class="p-4">
                 <a href="{{ Route::has('account') ? route('account') : '#' }}"
-                   class="flex items-center justify-center gap-2 bg-[#0B4A63] hover:bg-[#093c50] text-white py-3 rounded-lg font-medium text-sm transition">
+                   class="flex items-center justify-center gap-2 bg-[#154E64] hover:bg-[#0A4C62] text-white py-3 rounded-lg font-medium text-sm transition">
                     <svg xmlns="http://www.w3.org/2000/svg" class="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.8">
                         <path stroke-linecap="round" stroke-linejoin="round" d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14c-4.4 0-8 2-8 4.5V21h16v-2.5c0-2.5-3.6-4.5-8-4.5z"/>
                     </svg>

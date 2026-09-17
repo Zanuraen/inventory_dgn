@@ -4,7 +4,7 @@
 
 @section('content')
 
-<div class="bg-[#0B4A63] text-white rounded-lg p-6 mb-6">
+<div class="bg-[#0A4C62] text-white rounded-lg p-6 mb-6">
     <h1 class="text-xl font-bold">Laporan Aset</h1>
     <p class="text-sm text-blue-200 mt-1">Ringkasan dan distribusi aset perusahaan</p>
 </div>
@@ -100,7 +100,7 @@
                         <span class="text-gray-400">{{ $lok->total }} ({{ $pct }}%)</span>
                     </div>
                     <div class="w-full bg-gray-100 rounded-full h-2">
-                        <div class="bg-[#0B4A63] h-2 rounded-full" style="width: {{ $pct }}%"></div>
+                        <div class="bg-[#0A4C62] h-2 rounded-full" style="width: {{ $pct }}%"></div>
                     </div>
                 </div>
             @empty
@@ -126,12 +126,12 @@
         <input type="text" name="search" value="{{ request('search') }}" placeholder="Cari barang..."
                class="flex-1 border border-gray-300 rounded px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-[#0B4A63]/30">
 
-        <select name="status" onchange="this.form.submit()" class="border border-gray-300 rounded px-3 py-2 text-sm"></select>
-            <option value="all">Semua Status</option>
-            @foreach (['Baik', 'Rusak Ringan', 'Rusak Berat'] as $status)
-                <option value="{{ $status }}" {{ request('status') === $status ? 'selected' : '' }}>{{ $status }}</option>
-            @endforeach
-        </select>
+        <select name="status" onchange="this.form.submit()" class="border border-gray-300 rounded px-3 py-2 text-sm">
+    <option value="all">Semua Status</option>
+    @foreach (['Baik', 'Rusak Ringan', 'Rusak Berat'] as $status)
+        <option value="{{ $status }}" {{ request('status') === $status ? 'selected' : '' }}>{{ $status }}</option>
+    @endforeach
+</select>
 
         <button type="submit" class="bg-[#F26522] text-white text-sm font-semibold px-4 py-2 rounded hover:bg-orange-600 transition">
             Cari
@@ -161,7 +161,7 @@
                 @endphp
                 <tr class="border-b border-gray-100">
                     <td class="py-3 px-2 text-gray-400">{{ $assets->firstItem() + $i }}</td>
-                    <td class="py-3 px-2 font-medium text-[#0B4A63]">{{ $asset->name }}</td>
+                    <td class="py-3 px-2 font-medium text-[#0A4C62]">{{ $asset->name }}</td>
                     <td class="py-3 px-2 text-gray-500">{{ $asset->code_asset }}</td>
                     <td class="py-3 px-2 text-center">{{ $asset->qty }}</td>
                     <td class="py-3 px-2 text-center">
