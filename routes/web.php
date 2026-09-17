@@ -7,7 +7,7 @@ use App\Http\Controllers\MaintenanceController;
 use App\Http\Controllers\DashboardController;
 
 // === fitur dashboard ====
-// Route::get('/', [DashboardController::class, 'index'])->name('dashboard');
+Route::get('/', [DashboardController::class, 'index'])->name('dashboard');
 
 // === fitur data barang ====
 Route::resource('assets', AssetController::class);
