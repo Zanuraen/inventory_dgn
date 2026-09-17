@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\CategoryController;
 use App\Http\Controllers\SettingController;
+use App\Http\Controllers\ReportController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\AssetController;
 use App\Http\Controllers\AssetHandoverController;
@@ -15,6 +16,9 @@ Route::get('/', function () {
 Route::get('/settings', [SettingController::class, 'index'])->name('settings.index');
 Route::put('/settings/company', [SettingController::class, 'updateCompany'])->name('settings.company.update');
 Route::resource('categories', CategoryController::class)->except('show'); // dipakai di dalam Settings (Kategori & Kode Aset)
+Route::get('/laporan', [ReportController::class, 'index'])->name('reports.index');
+Route::get('/laporan/export/pdf', [ReportController::class, 'exportPdf'])->name('reports.export.pdf');
+Route::get('/laporan/export/excel', [ReportController::class, 'exportExcel'])->name('reports.export.excel');
 
 // ---- Menunggu implementasi anggota tim lain ----
 // Pastikan nama route-nya (name(...)) sama persis dengan daftar di bawah,
@@ -24,8 +28,6 @@ Route::resource('categories', CategoryController::class)->except('show'); // dip
 
 // "Data Barang" di sidebar = Data Aset (BUKAN kategori). Ini resource terpisah, misal AssetController:
 // Route::resource('items', ItemController::class)->names('items'); // items.index, items.show, dst
-
-// Route::get('/laporan', [ReportController::class, 'index'])->name('reports.index');
 
 // Route::get('/pemeliharaan', [MaintenanceController::class, 'index'])->name('maintenance.index');
 
