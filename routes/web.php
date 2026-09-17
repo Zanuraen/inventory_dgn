@@ -1,6 +1,9 @@
 <?php
 
 use App\Http\Controllers\ProfileController;
+use App\Http\Controllers\CategoryController;
+use App\Http\Controllers\SettingController;
+use App\Http\Controllers\ReportController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\AssetController;
 use App\Http\Controllers\AssetHandoverController;
@@ -30,6 +33,16 @@ Route::middleware('auth')->group(function () {
         ->name('maintenances.photos.destroy');
     Route::patch('maintenances/{maintenance}/selesai', [MaintenanceController::class, 'markAsDone'])
         ->name('maintenances.mark-done');
+
+    // === fitur pengaturan & kategori ====
+    Route::get('/settings', [SettingController::class, 'index'])->name('settings.index');
+    Route::put('/settings/company', [SettingController::class, 'updateCompany'])->name('settings.company.update');
+    Route::resource('categories', CategoryController::class)->except('show'); // dipakai di dalam Settings (Kategori & Kode Aset)
+
+    // === fitur laporan ====
+    Route::get('/laporan', [ReportController::class, 'index'])->name('reports.index');
+    Route::get('/laporan/export/pdf', [ReportController::class, 'exportPdf'])->name('reports.export.pdf');
+    Route::get('/laporan/export/excel', [ReportController::class, 'exportExcel'])->name('reports.export.excel');
 
     // === fitur profile ====
     Route::get('/profile', [ProfileController::class, 'edit'])
