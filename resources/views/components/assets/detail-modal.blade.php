@@ -1,5 +1,4 @@
-<div
-    x-data="{
+<div x-data="{
         open: false,
         loading: false,
         detail: null,
@@ -18,12 +17,8 @@
                 this.loading = false;
             }
         }
-    }"
-    x-on:open-asset-detail.window="loadDetail($event.detail.assetId)"
-    x-show="open"
-    x-cloak
-    class="fixed inset-0 z-50 flex items-start justify-center bg-black/40 overflow-y-auto py-8 px-4"
->
+    }" x-on:open-asset-detail.window="loadDetail($event.detail.assetId)" x-show="open" x-cloak
+    class="fixed inset-0 z-50 flex items-start justify-center bg-black/40 overflow-y-auto py-8 px-4">
     <div @click.outside="open = false" class="bg-white w-full max-w-xl rounded-xl shadow-lg overflow-hidden">
 
         <div class="bg-[#0A4C62] px-6 py-4 flex items-center justify-between">
@@ -39,15 +34,14 @@
             <div class="p-6 space-y-6 max-h-[75vh] overflow-y-auto">
 
                 <div class="flex gap-4 border border-gray-200 rounded-xl p-4">
-                    <img :src="detail.image ?? 'https://via.placeholder.com/80'" class="w-20 h-20 rounded-lg object-cover shrink-0" />
+                    <img :src="detail.image ?? 'https://via.placeholder.com/80'"
+                        class="w-20 h-20 rounded-lg object-cover shrink-0" />
                     <div>
                         <div class="flex items-center gap-2">
                             <h3 class="text-[#0A4C62] font-bold text-lg" x-text="detail.name"></h3>
-                            <span
-                                class="text-xs px-2 py-0.5 rounded-full"
+                            <span class="text-xs px-2 py-0.5 rounded-full"
                                 :class="detail.ketersediaan === 'Ada' ? 'bg-[#E8F5E9] text-[#2E7D32]' : 'bg-[#FFEBEE] text-[#D32F2F]'"
-                                x-text="detail.ketersediaan"
-                            ></span>
+                                x-text="detail.ketersediaan"></span>
                         </div>
                         <p class="text-sm text-gray-500 mt-1" x-text="detail.description"></p>
                         <p class="text-sm text-gray-600 mt-1 flex items-center gap-1">
@@ -66,7 +60,8 @@
                         </div>
                         <div>
                             <p class="text-gray-400 text-xs uppercase tracking-wide">Serial Number</p>
-                            <p class="font-medium bg-gray-100 inline-block px-2 py-0.5 rounded" x-text="detail.serial_number"></p>
+                            <p class="font-medium bg-gray-100 inline-block px-2 py-0.5 rounded"
+                                x-text="detail.serial_number"></p>
                         </div>
                         <div>
                             <p class="text-gray-400 text-xs uppercase tracking-wide">Tanggal Beli</p>
@@ -82,11 +77,9 @@
                 <div>
                     <div class="flex items-center justify-between border-b pb-2 mb-3">
                         <h4 class="font-semibold text-gray-700">Dokumen Aset</h4>
-                        <button
-                            type="button"
+                        <button type="button"
                             @click="open = false; $dispatch('open-tambah-surat', { assetId: detail.id })"
-                            class="text-[#F26522] text-sm font-medium hover:underline"
-                        >+ Tambah Surat</button>
+                            class="text-[#F26522] text-sm font-medium hover:underline">+ Tambah Surat</button>
                     </div>
 
                     <template x-if="detail.handovers.length === 0">
@@ -103,19 +96,39 @@
                                 </p>
                             </div>
                             <div class="flex items-center gap-3">
-                                <span
-                                    class="px-2 py-0.5 rounded-full text-xs whitespace-nowrap"
+                                <span class="px-2 py-0.5 rounded-full text-xs whitespace-nowrap"
                                     :class="h.status === 'dipinjam' ? 'bg-[#FFF3E0] text-[#D3591E]' : 'bg-[#E8F5E9] text-[#2E7D32]'"
-                                    x-text="h.status === 'dipinjam' ? 'Dipinjam' : 'Dikembalikan'"
-                                ></span>
+                                    x-text="h.status === 'dipinjam' ? 'Dipinjam' : 'Dikembalikan'"></span>
                                 <template x-if="h.status === 'dipinjam'">
-                                    <button
-                                        type="button"
+                                    <button type="button"
                                         @click="open = false; $dispatch('open-pengembalian', { handoverId: h.id })"
-                                        class="text-xs text-[#1565C0] hover:underline whitespace-nowrap"
-                                    >Kembalikan</button>
+                                        class="text-xs text-[#1565C0] hover:underline whitespace-nowrap">Kembalikan</button>
                                 </template>
                             </div>
+                        </div>
+                    </template>
+                </div>
+                <div>
+                    <h4 class="font-semibold text-gray-700 border-b pb-2 mb-3">Riwayat Pemeliharaan</h4>
+
+                    <template x-if="detail.maintenances.length === 0">
+                        <p class="text-sm text-gray-400 py-2">Belum pernah dilakukan pemeliharaan.</p>
+                    </template>
+
+                    <template x-for="m in detail.maintenances" :key="m.id">
+                        <div class="flex items-center justify-between py-2 border-b border-gray-100 text-sm">
+                            <div>
+                                <p class="font-medium" x-text="m.jenis_pemeliharaan"></p>
+                                <p class="text-gray-400 text-xs">
+                                    <span x-text="m.vendor"></span>
+                                    &bull; <span x-text="m.maintenance_date"></span>
+                                </p>
+                            </div>
+                            <span class="px-2 py-0.5 rounded-full text-xs whitespace-nowrap capitalize" :class="{
+                    'bg-[#E3F2FD] text-[#1565C0]': m.status === 'terjadwal',
+                    'bg-[#FFEBEE] text-[#D32F2F]': m.status === 'terlambat',
+                    'bg-[#E8F5E9] text-[#2E7D32]': m.status === 'selesai',
+                }" x-text="m.status"></span>
                         </div>
                     </template>
                 </div>

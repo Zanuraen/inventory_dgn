@@ -1,6 +1,9 @@
+<!-- Secara sederhana, komponen ini berfungsi mencetak label status kecil (badge) dengan warna yang dinamis sesuai status yang dikirimkan. -->
+
 @props(['status' => 'neutral'])
 
 @php
+// pckage warna dari boostrap 
     $map = [
         'success' => 'bg-success-bg text-success-text',
         'danger'  => 'bg-danger-bg text-danger-text',

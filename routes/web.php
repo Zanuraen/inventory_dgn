@@ -6,11 +6,11 @@ use App\Http\Controllers\ReportController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\AssetController;
 use App\Http\Controllers\AssetHandoverController;
+use App\Http\Controllers\MaintenanceController;
+use App\Http\Controllers\DashboardController;
 
-
-Route::get('/', function () {
-    return view('welcome');
-})->name('welcome');
+// === fitur dashboard ====
+Route::get('/', [DashboardController::class, 'index'])->name('dashboard');
 
 // Sudah jalan
 Route::get('/settings', [SettingController::class, 'index'])->name('settings.index');
@@ -21,23 +21,21 @@ Route::get('/laporan/export/pdf', [ReportController::class, 'exportPdf'])->name(
 Route::get('/laporan/export/excel', [ReportController::class, 'exportExcel'])->name('reports.export.excel');
 
 // ---- Menunggu implementasi anggota tim lain ----
-// Pastikan nama route-nya (name(...)) sama persis dengan daftar di bawah,
-// supaya sidebar di layouts/app.blade.php otomatis nyambung & ke-highlight saat aktif.
-
-// Route::get('/dashboard', [DashboardController::class, 'index'])->name('dashboard');
-
-// "Data Barang" di sidebar = Data Aset (BUKAN kategori). Ini resource terpisah, misal AssetController:
-// Route::resource('items', ItemController::class)->names('items'); // items.index, items.show, dst
-
-// Route::get('/pemeliharaan', [MaintenanceController::class, 'index'])->name('maintenance.index');
-
 // Route::get('/notifications', [NotificationController::class, 'index'])->name('notifications.index');
-
 // Route::get('/aktivitas', [ActivityLogController::class, 'index'])->name('activity.index');
-
 // Route::get('/account', [AccountController::class, 'edit'])->name('account');
 
+// === fitur data barang ====
 Route::resource('assets', AssetController::class);
 Route::get('assets/{asset}/detail', [AssetController::class, 'detail'])->name('assets.detail');
 Route::post('assets/{asset}/handovers', [AssetHandoverController::class, 'store'])->name('handovers.store');
 Route::post('handovers/{handover}/kembalikan', [AssetHandoverController::class, 'kembalikan'])->name('handovers.kembalikan');
+
+// fitur pemeliharaan
+Route::resource('maintenances', MaintenanceController::class)->except(['create', 'edit']);
+Route::delete('maintenances/{maintenance}/documents/{document}', [MaintenanceController::class, 'destroyDocument'])
+    ->name('maintenances.documents.destroy');
+Route::delete('maintenances/{maintenance}/photos/{photo}', [MaintenanceController::class, 'destroyPhoto'])
+    ->name('maintenances.photos.destroy');
+Route::patch('maintenances/{maintenance}/selesai', [MaintenanceController::class, 'markAsDone'])
+    ->name('maintenances.mark-done');

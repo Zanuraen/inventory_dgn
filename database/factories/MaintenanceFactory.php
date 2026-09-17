@@ -23,6 +23,8 @@ class MaintenanceFactory extends Factory
             'vendor' => $this->faker->company(),
             'kontak_vendor' => $this->faker->phoneNumber(),
             'status' => $status,
+            'priority' => $this->faker->randomElement(['rendah', 'sedang', 'tinggi']),
+            'recurrence' => $this->faker->randomElement(['tidak', 'mingguan', 'bulanan', 'tahunan']),
         ];
     }
 
