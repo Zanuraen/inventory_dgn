@@ -8,24 +8,6 @@ use Illuminate\Http\Request;
 class CategoryController extends Controller
 {
     /**
-     * Tampilkan daftar semua kategori.
-     */
-    public function index()
-    {
-        $categories = Category::withCount('assets')->latest()->paginate(10);
-
-        return view('categories.index', compact('categories'));
-    }
-
-    /**
-     * Tampilkan form tambah kategori.
-     */
-    public function create()
-    {
-        return view('categories.create');
-    }
-
-    /**
      * Simpan kategori baru ke database.
      */
     public function store(Request $request)
@@ -39,16 +21,8 @@ class CategoryController extends Controller
         Category::create($validated);
 
         return redirect()
-            ->route('categories.index')
+            ->route('settings.index')
             ->with('success', 'Kategori berhasil ditambahkan.');
-    }
-
-    /**
-     * Tampilkan form edit kategori.
-     */
-    public function edit(Category $category)
-    {
-        return view('categories.edit', compact('category'));
     }
 
     /**
@@ -65,7 +39,7 @@ class CategoryController extends Controller
         $category->update($validated);
 
         return redirect()
-            ->route('categories.index')
+            ->route('settings.index')
             ->with('success', 'Kategori berhasil diperbarui.');
     }
 
@@ -76,14 +50,14 @@ class CategoryController extends Controller
     {
         if ($category->assets()->exists()) {
             return redirect()
-                ->route('categories.index')
+                ->route('settings.index')
                 ->with('error', 'Kategori tidak bisa dihapus karena masih dipakai oleh aset.');
         }
 
         $category->delete();
 
         return redirect()
-            ->route('categories.index')
+            ->route('settings.index')
             ->with('success', 'Kategori berhasil dihapus.');
     }
 }
