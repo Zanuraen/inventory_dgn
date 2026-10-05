@@ -1,10 +1,10 @@
 @props(['title', 'description' => null])
 
-<div class="flex flex-col gap-4 bg-primary px-4 py-8 sm:px-6 lg:min-h-[100px] lg:flex-row lg:items-center lg:justify-between lg:px-10">
+<div class="flex flex-col gap-2 bg-primary px-4 py-6 sm:px-6 lg:flex-row lg:items-center lg:justify-between lg:px-10">
     <div>
-        <h1 class="text-2xl font-bold text-white lg:text-3xl">{{ $title }}</h1>
+        <h1 class="text-lg font-bold text-white lg:text-xl">{{ $title }}</h1>
         @if ($description)
-            <p class="mt-1 text-sm text-white/80 lg:text-base">{{ $description }}</p>
+            <p class="mt-1 text-sm text-white/80">{{ $description }}</p>
         @endif
     </div>
 

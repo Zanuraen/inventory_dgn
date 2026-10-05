@@ -10,9 +10,8 @@ class SettingController extends Controller
 {
     public function index()
     {
-        $categories = Category::orderBy('name')->get();
+        $categories = Category::withCount('assets')->orderBy('name')->get();
 
-        // Pakai baris pertama; kalau belum ada, buat default sekali saja
         $company = Setting::first() ?? Setting::create([
             'company_name' => 'PT Digital Inteligensi Nusantara',
             'company_code' => 'DGN',

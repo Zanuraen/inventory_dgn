@@ -4,10 +4,10 @@
 
 @section('content')
 
-<div class="bg-[#0A4C62] text-white rounded-lg p-6 mb-6">
-    <h1 class="text-xl font-bold">Pengaturan Sistem</h1>
+<div class="bg-[#0A4C62] text-white rounded-lg px-6 py-5 mb-6">
+    <h1 class="text-lg font-bold">Pengaturan Sistem</h1>
     <p class="text-sm text-blue-200 mt-1">
-        PT Digital Inteligensi Nusantara — Sistem Inventaris Aset
+        {{ $company->company_name }} — Sistem Inventaris Aset
     </p>
 </div>
 

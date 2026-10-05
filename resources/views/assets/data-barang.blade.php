@@ -228,5 +228,9 @@
         </div>
 
     </div>
-
+        <x-assets.detail-modal />
+        <x-assets.handover-pilih-jenis />
+        <x-assets.handover-form-fisik />
+        <x-assets.handover-form-digital />
+        <x-assets.handover-pengembalian />
 </x-layouts.app>

@@ -5,20 +5,34 @@
     <title>Laporan Aset</title>
     <style>
         body { font-family: sans-serif; font-size: 12px; color: #333; }
-        h1 { font-size: 18px; margin-bottom: 0; color: #0B4A63; }
-        p.subtitle { margin-top: 2px; color: #666; }
-        table { width: 100%; border-collapse: collapse; margin-top: 16px; }
-        th, td { border: 1px solid #ddd; padding: 6px 8px; text-align: left; }
-        th { background-color: #0B4A63; color: white; font-size: 11px; text-transform: uppercase; }
-        tr:nth-child(even) { background-color: #f8f9fc; }
+        .header { width: 100%; border-collapse: collapse; border-bottom: 2px solid #0A4C62; }
+        .header td { border: none; padding: 0 0 12px 0; vertical-align: middle; }
+        .header .logo img { width: 170px; }
+        .header .info { text-align: right; }
+        h1 { font-size: 18px; margin: 0; color: #0A4C62; }
+        p.subtitle { margin: 3px 0 0; color: #666; font-size: 11px; }
+        table.data { width: 100%; border-collapse: collapse; margin-top: 18px; }
+        table.data th, table.data td { border: 1px solid #ddd; padding: 6px 8px; text-align: left; }
+        table.data th { background-color: #0A4C62; color: white; font-size: 11px; text-transform: uppercase; }
+        table.data tr:nth-child(even) { background-color: #f8f9fc; }
     </style>
 </head>
 <body>
-    <h1>Laporan Aset</h1>
-    <p class="subtitle">PT Digital Inteligensi Nusantara — Sistem Inventaris Aset</p>
-    <p class="subtitle">Dicetak pada: {{ now()->format('d F Y, H:i') }}</p>
 
-    <table>
+    <table class="header">
+        <tr>
+            <td class="logo">
+                <img src="{{ $logoPath }}" alt="Digitelnusa">
+            </td>
+            <td class="info">
+                <h1>Laporan Aset</h1>
+                <p class="subtitle">{{ $companyName }} — Sistem Inventaris Aset</p>
+                <p class="subtitle">Dicetak pada: {{ now()->format('d F Y, H:i') }}</p>
+            </td>
+        </tr>
+    </table>
+
+    <table class="data">
         <thead>
             <tr>
                 <th>No</th>

@@ -5,8 +5,8 @@
 
 @section('content')
 
-<div class="bg-[#0A4C62] text-white rounded-lg p-6 mb-6">
-    <h1 class="text-xl font-bold">Laporan Aset</h1>
+<div class="bg-[#0A4C62] text-white rounded-lg px-6 py-5 mb-6">
+    <h1 class="text-lg font-bold">Laporan Aset</h1>
     <p class="text-sm text-blue-200 mt-1">Ringkasan dan distribusi aset perusahaan</p>
 </div>
 
@@ -20,7 +20,7 @@
         </div>
         <div>
             <p class="text-xs font-semibold uppercase tracking-wide text-gray-500">Total Aset</p>
-            <p class="text-2xl font-bold text-gray-800">{{ number_format($totalUnit) }} <span class="text-sm font-normal text-gray-400">Unit</span></p>
+            <p class="text-2xl font-bold text-gray-800">{{ number_format($totalUnit) }} <span class="text-sm font-normal text-gray-400">Jenis Barang</span></p>
         </div>
     </div>
 
@@ -84,7 +84,7 @@
         @if ($asetRusak > 0)
             <div class="mt-4 bg-red-50 text-red-600 text-sm font-medium rounded px-4 py-2 flex items-center justify-between">
                 <span>🛠️ Aset Rusak</span>
-                <span>{{ $asetRusak }} Unit ({{ $totalUnit > 0 ? round($asetRusak / $totalUnit * 100, 1) : 0 }}%)</span>
+                <span>{{ $asetRusak }} Jenis Barang ({{ $totalUnit > 0 ? round($asetRusak / $totalUnit * 100, 1) : 0 }}%)</span>
             </div>
         @endif
     </div>
