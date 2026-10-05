@@ -89,12 +89,12 @@
                     </div>
                     <div class="pt-2 flex gap-2">
                         <!-- Tombol Riwayat -->
-                        <button type="button"
-                            @click="showDetailModal = false; $dispatch('open-asset-detail', { assetId: selectedDetail.asset_id })"
+                        <!-- Tombol Riwayat -->
+                        <a :href="'/maintenances?asset_id=' + selectedDetail.asset_id"
                             class="flex-1 flex items-center justify-center gap-2 text-sm font-medium text-[#0A4C62] border border-[#0A4C62] rounded-lg py-2.5 hover:bg-[#0A4C62] hover:text-white transition">
                             <x-icon name="clock" class="w-4 h-4" />
-                            Lihat Riwayat Aset
-                        </button>
+                            Lihat Riwayat Pemeliharaan
+                        </a>
                         <!-- Tombol Tandai Selesai -->
                         <template x-if="selectedDetail.status !== 'selesai'">
                             <form :action="'/maintenances/' + selectedDetail.id + '/selesai'" method="POST"

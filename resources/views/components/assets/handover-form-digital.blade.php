@@ -38,31 +38,31 @@
             <input type="hidden" name="jenis_surat" value="digital">
 
             <div>
-                <label class="block text-sm font-medium text-gray-700 mb-1">Nama *</label>
+                <label class="block text-sm font-medium text-gray-700 mb-1">Nama <span class="text-[#D32F2F]">*</span></label>
                 <input type="text" name="peminjam_nama" required
                     class="w-full border border-gray-300 rounded-lg px-3 py-2 text-sm focus:ring-2 focus:ring-[#0A4C62] focus:outline-none">
             </div>
 
             <div>
-                <label class="block text-sm font-medium text-gray-700 mb-1">Tujuan Penggunaan *</label>
+                <label class="block text-sm font-medium text-gray-700 mb-1">Tujuan Penggunaan <span class="text-[#D32F2F]">*</span></label>
                 <input type="text" name="tujuan_penggunaan" required
                     class="w-full border border-gray-300 rounded-lg px-3 py-2 text-sm focus:ring-2 focus:ring-[#0A4C62] focus:outline-none">
             </div>
 
             <div>
-                <label class="block text-sm font-medium text-gray-700 mb-1">Lokasi Penggunaan *</label>
+                <label class="block text-sm font-medium text-gray-700 mb-1">Lokasi Penggunaan <span class="text-[#D32F2F]">*</span></label>
                 <input type="text" name="lokasi_penggunaan" required placeholder="Contoh: Ruang Meeting Lt. 2, atau di luar kantor"
                     class="w-full border border-gray-300 rounded-lg px-3 py-2 text-sm focus:ring-2 focus:ring-[#0A4C62] focus:outline-none">
             </div>
 
             <div class="grid grid-cols-2 gap-4">
                 <div>
-                    <label class="block text-sm font-medium text-gray-700 mb-1">Tanggal Pinjam *</label>
+                    <label class="block text-sm font-medium text-gray-700 mb-1">Tanggal Pinjam <span class="text-[#D32F2F]">*</span></label>
                     <input type="date" name="tanggal_pinjam" required
                         class="w-full border border-gray-300 rounded-lg px-3 py-2 text-sm focus:ring-2 focus:ring-[#0A4C62] focus:outline-none">
                 </div>
                 <div>
-                    <label class="block text-sm font-medium text-gray-700 mb-1">Rencana Kembali *</label>
+                    <label class="block text-sm font-medium text-gray-700 mb-1">Rencana Kembali <span class="text-[#D32F2F]">*</span></label>
                     <input type="date" name="tanggal_kembalian" required
                         class="w-full border border-gray-300 rounded-lg px-3 py-2 text-sm focus:ring-2 focus:ring-[#0A4C62] focus:outline-none">
                 </div>
@@ -70,7 +70,7 @@
 
             {{-- Foto kondisi SEBELUM dipinjam — bisa lebih dari 1, tidak ada upload scan surat karena ini digital --}}
             <div>
-                <label class="block text-sm font-medium text-gray-700 mb-1">Foto Kondisi Barang — Sebelum Dipinjam *</label>
+                <label class="block text-sm font-medium text-gray-700 mb-1">Foto Kondisi Barang — Sebelum Dipinjam <span class="text-[#D32F2F]">*</span></label>
                 <p class="text-xs text-gray-400 mb-2">Sebagai bukti kondisi awal. Boleh lebih dari 1 foto.</p>
 
                 <label class="border-2 border-dashed border-gray-300 rounded-lg flex flex-col items-center justify-center py-6 cursor-pointer hover:border-[#F26522] transition">

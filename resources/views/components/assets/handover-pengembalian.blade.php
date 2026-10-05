@@ -25,7 +25,7 @@
             @csrf
 
             <div>
-                <label class="block text-sm font-medium text-gray-700 mb-1">Foto Kondisi Barang — Sesudah Dikembalikan *</label>
+                <label class="block text-sm font-medium text-gray-700 mb-1">Foto Kondisi Barang — Sesudah Dikembalikan <span class="text-[#D32F2F]">*</span></label>
                 <p class="text-xs text-gray-400 mb-2">Sebagai bukti kondisi akhir. Boleh lebih dari 1 foto.</p>
 
                 <label class="border-2 border-dashed border-gray-300 rounded-lg flex flex-col items-center justify-center py-6 cursor-pointer hover:border-[#F26522] transition">

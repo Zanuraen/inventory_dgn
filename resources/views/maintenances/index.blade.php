@@ -71,11 +71,25 @@
                 </a>
             </div>
 
+            @if ($filterAsset)
+                <div
+                    class="bg-[#E3F2FD] border border-[#BBDEFB] rounded-xl px-4 py-3 flex items-center justify-between flex-wrap gap-2">
+                    <p class="text-sm text-[#1565C0]">
+                        Menampilkan riwayat pemeliharaan: <span class="font-semibold">{{ $filterAsset->name }}</span>
+                    </p>
+                    <a href="{{ route('maintenances.index') }}" class="text-sm text-[#1565C0] font-medium hover:underline">
+                        Tampilkan semua
+                    </a>
+                </div>
+            @endif
             {{-- ====== SEARCH & FILTER (fungsional di STEP 7-8) ====== --}}
 
             <form method="GET" action="{{ route('maintenances.index') }}"
                 class="bg-white border border-[#E5E7EB] rounded-xl p-4 flex flex-col md:flex-row gap-3">
 
+                @if (request()->filled('asset_id'))
+    <input type="hidden" name="asset_id" value="{{ request('asset_id') }}">
+@endif
                 <div class="flex-1 relative">
                     <x-icon name="search" class="w-4 h-4 text-gray-400 absolute left-3 top-1/2 -translate-y-1/2" />
                     <input type="text" name="search" value="{{ request('search') }}"
@@ -131,7 +145,8 @@
                                                         <tr class="border-b border-gray-100 hover:bg-gray-50">
                                                             <td class="px-4 py-3 text-gray-500">{{ $maintenances->firstItem() + $index }}</td>
                                                             <td class="px-4 py-3 font-medium text-[#111827]">
-                                                                {{ $m->asset?->name ?? 'Aset telah dihapus' }}</td>
+                                                                {{ $m->asset?->name ?? 'Aset telah dihapus' }}
+                                                            </td>
                                                             <td class="px-4 py-3 text-gray-500">{{ $m->asset?->code_asset ?? '-' }}</td>
                                                             <td class="px-4 py-3">{{ $m->jenis_pemeliharaan }}</td>
                                                             <td class="px-4 py-3">
@@ -161,7 +176,7 @@
                                     'id' => $m->id,
                                     'asset_id' => $m->asset_id,
                                     'asset_name' => $m->asset?->name ?? 'Aset telah dihapus',
-'asset_code' => $m->asset?->code_asset ?? '-',
+                                    'asset_code' => $m->asset?->code_asset ?? '-',
                                     'vendor' => $m->vendor,
                                     'kontak_vendor' => $m->kontak_vendor,
                                     'jenis_pemeliharaan' => $m->jenis_pemeliharaan,
@@ -244,8 +259,9 @@
                                 <div class="bg-white border border-[#E5E7EB] rounded-xl p-4">
                                     <div class="flex items-start justify-between gap-3">
                                         <div class="min-w-0">
-                                            <p class="font-medium text-[#111827] truncate">{{ $m->asset?->name ?? 'Aset telah dihapus' }}</p>
-<p class="text-gray-400 text-xs">{{ $m->asset?->code_asset ?? '-' }}</p>
+                                            <p class="font-medium text-[#111827] truncate">
+                                                {{ $m->asset?->name ?? 'Aset telah dihapus' }}</p>
+                                            <p class="text-gray-400 text-xs">{{ $m->asset?->code_asset ?? '-' }}</p>
                                         </div>
                                         @php
                                             $statusStyle = [

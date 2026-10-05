@@ -62,7 +62,7 @@
                     <h3 class="text-sm font-semibold text-[#0A4C62] mb-3">Informasi Aset</h3>
                     <div class="grid sm:grid-cols-2 gap-4">
                         <div class="relative">
-    <label class="text-sm font-medium text-gray-700">Nama Aset <span class="text-red-500">*</span></label>
+    <label class="text-sm font-medium text-gray-700">Nama Aset <span class="text-[#D32F2F]">*</span></label>
     <input
         type="text"
         x-model="query"
@@ -93,7 +93,7 @@
     </div>
 
     @error('asset_id')
-        <p class="text-xs text-red-500 mt-1">{{ $message }}</p>
+        <p class="text-xs text-[#D32F2F] mt-1">{{ $message }}</p>
     @enderror
 </div>
 
@@ -109,19 +109,19 @@
 </div>
 
                         <div>
-                            <label class="text-sm font-medium text-gray-700">Vendor <span class="text-red-500">*</span></label>
+                            <label class="text-sm font-medium text-gray-700">Vendor <span class="text-[#D32F2F]">*</span></label>
                             <input type="text" name="vendor" value="{{ old('vendor') }}"
                                 placeholder="Nama vendor"
                                 class="mt-1 w-full border border-gray-300 rounded-lg px-3 py-2 text-sm focus:ring-2 focus:ring-[#0A4C62] focus:outline-none @error('vendor') border-red-400 @enderror">
-                            @error('vendor')<p class="text-xs text-red-500 mt-1">{{ $message }}</p>@enderror
+                            @error('vendor')<p class="text-xs text-[#D32F2F] mt-1">{{ $message }}</p>@enderror
                         </div>
 
                         <div>
-                            <label class="text-sm font-medium text-gray-700">Kontak Vendor <span class="text-red-500">*</span></label>
+                            <label class="text-sm font-medium text-gray-700">Kontak Vendor <span class="text-[#D32F2F]">*</span></label>
                             <input type="text" name="kontak_vendor" value="{{ old('kontak_vendor') }}"
                                 placeholder="No. telepon vendor"
                                 class="mt-1 w-full border border-gray-300 rounded-lg px-3 py-2 text-sm focus:ring-2 focus:ring-[#0A4C62] focus:outline-none @error('kontak_vendor') border-red-400 @enderror">
-                            @error('kontak_vendor')<p class="text-xs text-red-500 mt-1">{{ $message }}</p>@enderror
+                            @error('kontak_vendor')<p class="text-xs text-[#D32F2F] mt-1">{{ $message }}</p>@enderror
                         </div>
                     </div>
                 </div>
@@ -131,31 +131,31 @@
                     <h3 class="text-sm font-semibold text-[#0A4C62] mb-3">Detail Pemeliharaan</h3>
                     <div class="grid sm:grid-cols-2 gap-4">
                         <div class="sm:col-span-2">
-                            <label class="text-sm font-medium text-gray-700">Jenis Pemeliharaan <span class="text-red-500">*</span></label>
+                            <label class="text-sm font-medium text-gray-700">Jenis Pemeliharaan <span class="text-[#D32F2F]">*</span></label>
                             <input type="text" name="jenis_pemeliharaan" value="{{ old('jenis_pemeliharaan') }}"
                                 placeholder="Contoh: Pembersihan Hardware"
                                 class="mt-1 w-full border border-gray-300 rounded-lg px-3 py-2 text-sm focus:ring-2 focus:ring-[#0A4C62] focus:outline-none @error('jenis_pemeliharaan') border-red-400 @enderror">
-                            @error('jenis_pemeliharaan')<p class="text-xs text-red-500 mt-1">{{ $message }}</p>@enderror
+                            @error('jenis_pemeliharaan')<p class="text-xs text-[#D32F2F] mt-1">{{ $message }}</p>@enderror
                         </div>
 
                         <div>
-                            <label class="text-sm font-medium text-gray-700">Tanggal Pemeliharaan <span class="text-red-500">*</span></label>
+                            <label class="text-sm font-medium text-gray-700">Tanggal Pemeliharaan <span class="text-[#D32F2F]">*</span></label>
                             <input type="date" name="maintenance_date" value="{{ old('maintenance_date') }}"
                                 class="mt-1 w-full border border-gray-300 rounded-lg px-3 py-2 text-sm focus:ring-2 focus:ring-[#0A4C62] focus:outline-none @error('maintenance_date') border-red-400 @enderror">
-                            @error('maintenance_date')<p class="text-xs text-red-500 mt-1">{{ $message }}</p>@enderror
+                            @error('maintenance_date')<p class="text-xs text-[#D32F2F] mt-1">{{ $message }}</p>@enderror
                         </div>
 
                         <div>
-                            <label class="text-sm font-medium text-gray-700">Jadwal Jatuh Tempo <span class="text-red-500">*</span></label>
+                            <label class="text-sm font-medium text-gray-700">Jadwal Jatuh Tempo <span class="text-[#D32F2F]">*</span></label>
                             <input type="date" name="jatuh_tempo" value="{{ old('jatuh_tempo') }}"
                                 class="mt-1 w-full border border-gray-300 rounded-lg px-3 py-2 text-sm focus:ring-2 focus:ring-[#0A4C62] focus:outline-none @error('jatuh_tempo') border-red-400 @enderror">
-                            @error('jatuh_tempo')<p class="text-xs text-red-500 mt-1">{{ $message }}</p>@enderror
+                            @error('jatuh_tempo')<p class="text-xs text-[#D32F2F] mt-1">{{ $message }}</p>@enderror
                         </div>
                     </div>
 
                     {{-- Prioritas --}}
                     <div class="mt-4">
-                        <label class="text-sm font-medium text-gray-700">Prioritas <span class="text-red-500">*</span></label>
+                        <label class="text-sm font-medium text-gray-700">Prioritas <span class="text-[#D32F2F]">*</span></label>
                         <div class="flex flex-wrap gap-4 mt-2">
                             @foreach (['rendah' => ['label' => 'Rendah', 'dot' => 'bg-green-500'], 'sedang' => ['label' => 'Sedang', 'dot' => 'bg-orange-500'], 'tinggi' => ['label' => 'Tinggi', 'dot' => 'bg-red-500']] as $value => $opt)
                                 <label class="flex items-center gap-2 text-sm">
@@ -165,7 +165,7 @@
                                 </label>
                             @endforeach
                         </div>
-                        @error('priority')<p class="text-xs text-red-500 mt-1">{{ $message }}</p>@enderror
+                        @error('priority')<p class="text-xs text-[#D32F2F] mt-1">{{ $message }}</p>@enderror
                     </div>
 
                     {{-- Jadwal Berulang --}}
@@ -180,7 +180,7 @@
                                 </label>
                             @endforeach
                         </div>
-                        @error('recurrence')<p class="text-xs text-red-500 mt-1">{{ $message }}</p>@enderror
+                        @error('recurrence')<p class="text-xs text-[#D32F2F] mt-1">{{ $message }}</p>@enderror
                     </div>
                 </div>
 
@@ -206,7 +206,7 @@
                                     </template>
                                 </ul>
                             </template>
-                            @error('documents.*')<p class="text-xs text-red-500 mt-1">{{ $message }}</p>@enderror
+                            @error('documents.*')<p class="text-xs text-[#D32F2F] mt-1">{{ $message }}</p>@enderror
                         </div>
 
                         <div>
@@ -214,7 +214,7 @@
                             <textarea name="description" maxlength="500" rows="5"
                                 placeholder="Tuliskan catatan tambahan (opsional)..."
                                 class="mt-1 w-full border border-gray-300 rounded-lg px-3 py-2 text-sm focus:ring-2 focus:ring-[#0A4C62] focus:outline-none">{{ old('description') }}</textarea>
-                            @error('description')<p class="text-xs text-red-500 mt-1">{{ $message }}</p>@enderror
+                            @error('description')<p class="text-xs text-[#D32F2F] mt-1">{{ $message }}</p>@enderror
                         </div>
                         {{-- DOKUMENTASI / FOTO BARANG --}}
                         <div>
@@ -240,7 +240,7 @@
     </template>
 
     @error('photos.*')
-        <p class="text-xs text-red-500 mt-1">{{ $message }}</p>
+        <p class="text-xs text-[#D32F2F] mt-1">{{ $message }}</p>
     @enderror
 </div>
                     </div>

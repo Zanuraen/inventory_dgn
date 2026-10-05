@@ -1,12 +1,10 @@
 <x-layouts.app>
 
-    <x-header-banner
-        title="Data Aset"
-        description="Seluruh aset perusahaan beserta detail lengkap untuk transparansi dan manajemen inventaris terpadu."
-    >
+    <x-header-banner title="Data Aset"
+        description="Seluruh aset perusahaan beserta detail lengkap untuk transparansi dan manajemen inventaris terpadu.">
         <x-slot:action>
             <a href="{{ route('assets.create') }}"
-               class="bg-[#F26522] hover:bg-[#FF7A00] text-white font-medium px-4 py-2.5 rounded-lg inline-flex items-center justify-center gap-2 transition w-full sm:w-auto">
+                class="bg-[#F26522] hover:bg-[#FF7A00] text-white font-medium px-4 py-2.5 rounded-lg inline-flex items-center justify-center gap-2 transition w-full sm:w-auto">
                 <x-icon name="plus" class="w-4 h-4" />
                 Tambah Aset
             </a>
@@ -20,23 +18,19 @@
 
         {{-- Search & Filter --}}
         <form method="GET" action="{{ route('assets.index') }}"
-              class="bg-white border border-[#E5E7EB] rounded-xl p-4 flex flex-col md:flex-row gap-3">
+            class="bg-white border border-[#E5E7EB] rounded-xl p-4 flex flex-col md:flex-row gap-3">
 
             <div class="flex-1 relative">
                 <x-icon name="search" class="w-4 h-4 text-gray-400 absolute left-3 top-1/2 -translate-y-1/2" />
-                <input
-                    type="text"
-                    name="search"
-                    value="{{ request('search') }}"
+                <input type="text" name="search" value="{{ request('search') }}"
                     placeholder="Cari nama barang, pengguna, atau lokasi..."
-                    class="w-full border border-gray-300 rounded-lg pl-9 pr-3 py-2 text-sm focus:ring-2 focus:ring-[#0A4C62] focus:outline-none"
-                >
+                    class="w-full border border-gray-300 rounded-lg pl-9 pr-3 py-2 text-sm focus:ring-2 focus:ring-[#0A4C62] focus:outline-none">
             </div>
 
             {{-- 2 dropdown filter dijadikan grid 2 kolom di mobile, sejajar biasa di desktop --}}
             <div class="grid grid-cols-2 md:flex gap-3">
                 <select name="location" onchange="this.form.submit()"
-                        class="border border-gray-300 rounded-lg px-3 py-2 text-sm focus:ring-2 focus:ring-[#0A4C62] focus:outline-none">
+                    class="border border-gray-300 rounded-lg px-3 py-2 text-sm focus:ring-2 focus:ring-[#0A4C62] focus:outline-none">
                     <option value="">Semua Lokasi</option>
                     @foreach ($locations as $loc)
                         <option value="{{ $loc }}" @selected(request('location') === $loc)>{{ $loc }}</option>
@@ -44,7 +38,7 @@
                 </select>
 
                 <select name="ketersediaan" onchange="this.form.submit()"
-                        class="border border-gray-300 rounded-lg px-3 py-2 text-sm focus:ring-2 focus:ring-[#0A4C62] focus:outline-none">
+                    class="border border-gray-300 rounded-lg px-3 py-2 text-sm focus:ring-2 focus:ring-[#0A4C62] focus:outline-none">
                     <option value="">Semua Ketersediaan</option>
                     <option value="ada" @selected(request('ketersediaan') === 'ada')>Ada</option>
                     <option value="tidak_ada" @selected(request('ketersediaan') === 'tidak_ada')>Tidak Ada</option>
@@ -52,7 +46,7 @@
             </div>
 
             <button type="submit"
-                    class="bg-[#0A4C62] text-white text-sm font-medium px-4 py-2 rounded-lg hover:bg-[#154E64] transition">
+                class="bg-[#0A4C62] text-white text-sm font-medium px-4 py-2 rounded-lg hover:bg-[#154E64] transition">
                 Cari
             </button>
         </form>
@@ -89,11 +83,13 @@
                                 </td>
                                 <td class="px-4 py-3">
                                     @if ($asset->qty > 0)
-                                        <span class="inline-flex items-center gap-1.5 bg-[#E8F5E9] text-[#2E7D32] text-xs px-2.5 py-1 rounded-full">
+                                        <span
+                                            class="inline-flex items-center gap-1.5 bg-[#E8F5E9] text-[#2E7D32] text-xs px-2.5 py-1 rounded-full">
                                             <span class="w-1.5 h-1.5 rounded-full bg-[#2E7D32]"></span> Ada
                                         </span>
                                     @else
-                                        <span class="inline-flex items-center gap-1.5 bg-[#FFEBEE] text-[#D32F2F] text-xs px-2.5 py-1 rounded-full">
+                                        <span
+                                            class="inline-flex items-center gap-1.5 bg-[#FFEBEE] text-[#D32F2F] text-xs px-2.5 py-1 rounded-full">
                                             <span class="w-1.5 h-1.5 rounded-full bg-[#D32F2F]"></span> Tidak Ada
                                         </span>
                                     @endif
@@ -104,23 +100,19 @@
                                     </span>
                                 </td>
                                 <td class="px-4 py-3 text-center">
-                                    <button
-                                        type="button"
-                                        x-on:click="$dispatch('open-asset-detail', { assetId: {{ $asset->id }} })"
-                                        class="text-[#1565C0] hover:opacity-70"
-                                        title="Lihat Detail"
-                                    >
+                                    <a href="{{ route('assets.show', $asset) }}"
+                                        class="inline-flex text-[#1565C0] hover:opacity-70" title="Lihat Detail">
                                         <x-icon name="eye" class="w-5 h-5" />
-                                    </button>
+                                    </a>
                                 </td>
                                 <td class="px-4 py-3">
                                     <div class="flex items-center justify-center gap-2">
                                         <a href="{{ route('assets.edit', $asset) }}"
-                                           class="text-gray-400 hover:text-[#0A4C62]" title="Edit">
+                                            class="text-gray-400 hover:text-[#0A4C62]" title="Edit">
                                             <x-icon name="pencil" class="w-4 h-4" />
                                         </a>
                                         <form action="{{ route('assets.destroy', $asset) }}" method="POST"
-                                              onsubmit="return confirm('Yakin hapus aset ini?')">
+                                            onsubmit="return confirm('Yakin hapus aset ini?')">
                                             @csrf
                                             @method('DELETE')
                                             <button type="submit" class="text-gray-400 hover:text-[#D32F2F]" title="Hapus">
@@ -142,7 +134,8 @@
             </div>
 
             {{-- Pagination desktop --}}
-            <div class="flex flex-col sm:flex-row items-center justify-between gap-3 px-4 py-3 border-t border-gray-100 text-sm text-gray-500">
+            <div
+                class="flex flex-col sm:flex-row items-center justify-between gap-3 px-4 py-3 border-t border-gray-100 text-sm text-gray-500">
                 <span>
                     Menampilkan {{ $assets->firstItem() ?? 0 }}-{{ $assets->lastItem() ?? 0 }}
                     dari {{ $assets->total() }} aset
@@ -161,11 +154,13 @@
                             <p class="text-gray-400 text-xs">{{ $asset->category->name ?? '-' }}</p>
                         </div>
                         @if ($asset->qty > 0)
-                            <span class="shrink-0 inline-flex items-center gap-1.5 bg-[#E8F5E9] text-[#2E7D32] text-xs px-2.5 py-1 rounded-full">
+                            <span
+                                class="shrink-0 inline-flex items-center gap-1.5 bg-[#E8F5E9] text-[#2E7D32] text-xs px-2.5 py-1 rounded-full">
                                 <span class="w-1.5 h-1.5 rounded-full bg-[#2E7D32]"></span> Ada
                             </span>
                         @else
-                            <span class="shrink-0 inline-flex items-center gap-1.5 bg-[#FFEBEE] text-[#D32F2F] text-xs px-2.5 py-1 rounded-full">
+                            <span
+                                class="shrink-0 inline-flex items-center gap-1.5 bg-[#FFEBEE] text-[#D32F2F] text-xs px-2.5 py-1 rounded-full">
                                 <span class="w-1.5 h-1.5 rounded-full bg-[#D32F2F]"></span> Tidak Ada
                             </span>
                         @endif
@@ -189,19 +184,16 @@
                     </div>
 
                     <div class="flex items-center gap-2 mt-4 pt-3 border-t border-gray-100">
-                        <button
-                            type="button"
-                            x-on:click="$dispatch('open-asset-detail', { assetId: {{ $asset->id }} })"
-                            class="flex-1 flex items-center justify-center gap-1.5 text-[#1565C0] text-sm font-medium py-2 rounded-lg border border-gray-200"
-                        >
+                        <a href="{{ route('assets.show', $asset) }}"
+                            class="flex-1 flex items-center justify-center gap-1.5 text-[#1565C0] text-sm font-medium py-2 rounded-lg border border-gray-200">
                             <x-icon name="eye" class="w-4 h-4" /> Detail
-                        </button>
+                        </a>
                         <a href="{{ route('assets.edit', $asset) }}"
-                           class="flex-1 flex items-center justify-center gap-1.5 text-[#0A4C62] text-sm font-medium py-2 rounded-lg border border-gray-200">
+                            class="flex-1 flex items-center justify-center gap-1.5 text-[#0A4C62] text-sm font-medium py-2 rounded-lg border border-gray-200">
                             <x-icon name="pencil" class="w-4 h-4" /> Edit
                         </a>
                         <form action="{{ route('assets.destroy', $asset) }}" method="POST"
-                              onsubmit="return confirm('Yakin hapus aset ini?')" class="flex-1">
+                            onsubmit="return confirm('Yakin hapus aset ini?')" class="flex-1">
                             @csrf
                             @method('DELETE')
                             <button type="submit"

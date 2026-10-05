@@ -7,7 +7,7 @@
 <div class="grid grid-cols-1 sm:grid-cols-2 gap-5">
 
     <div>
-        <label class="block text-sm font-medium text-gray-700 mb-1">Kategori *</label>
+        <label class="block text-sm font-medium text-gray-700 mb-1">Kategori <span class="text-[#D32F2F]">*</span></label>
         <select name="category_id" required
             class="w-full border border-gray-300 rounded-lg px-3 py-2 text-sm focus:ring-2 focus:ring-[#0A4C62] focus:outline-none">
             <option value="">-- Pilih Kategori --</option>
@@ -21,13 +21,13 @@
     </div>
 
     <div>
-        <label class="block text-sm font-medium text-gray-700 mb-1">Nama Barang *</label>
+        <label class="block text-sm font-medium text-gray-700 mb-1">Nama Barang <span class="text-[#D32F2F]">*</span></label>
         <input type="text" name="name" value="{{ old('name', $asset?->name) }}" required
             class="w-full border border-gray-300 rounded-lg px-3 py-2 text-sm focus:ring-2 focus:ring-[#0A4C62] focus:outline-none">
     </div>
 
     <div>
-        <label class="block text-sm font-medium text-gray-700 mb-1">Kode Aset *</label>
+        <label class="block text-sm font-medium text-gray-700 mb-1">Kode Aset <span class="text-[#D32F2F]">*</span></label>
         <input type="text" name="code_asset" value="{{ old('code_asset', $asset?->code_asset) }}" required
             placeholder="Contoh: INV-2026-001"
             class="w-full border border-gray-300 rounded-lg px-3 py-2 text-sm focus:ring-2 focus:ring-[#0A4C62] focus:outline-none">
@@ -40,7 +40,7 @@
     </div>
 
     <div>
-        <label class="block text-sm font-medium text-gray-700 mb-1">Kondisi *</label>
+        <label class="block text-sm font-medium text-gray-700 mb-1">Kondisi <span class="text-[#D32F2F]">*</span></label>
         <select name="condition_status" required
             class="w-full border border-gray-300 rounded-lg px-3 py-2 text-sm focus:ring-2 focus:ring-[#0A4C62] focus:outline-none">
             <option value="">-- Pilih Kondisi --</option>
@@ -53,7 +53,7 @@
     </div>
 
     <div>
-        <label class="block text-sm font-medium text-gray-700 mb-1">Jumlah (Qty) *</label>
+        <label class="block text-sm font-medium text-gray-700 mb-1">Jumlah (Qty) <span class="text-[#D32F2F]">*</span></label>
         <input type="number" name="qty" value="{{ old('qty', $asset?->qty ?? 1) }}" min="0" required
             class="w-full border border-gray-300 rounded-lg px-3 py-2 text-sm focus:ring-2 focus:ring-[#0A4C62] focus:outline-none">
     </div>
@@ -73,14 +73,14 @@
     </div>
 
     <div>
-        <label class="block text-sm font-medium text-gray-700 mb-1">Tanggal Beli *</label>
+        <label class="block text-sm font-medium text-gray-700 mb-1">Tanggal Beli <span class="text-[#D32F2F]">*</span></label>
         <input type="date" name="tanggal_beli"
             value="{{ old('tanggal_beli', $asset?->tanggal_beli?->format('Y-m-d')) }}" required
             class="w-full border border-gray-300 rounded-lg px-3 py-2 text-sm focus:ring-2 focus:ring-[#0A4C62] focus:outline-none">
     </div>
 
     <div>
-        <label class="block text-sm font-medium text-gray-700 mb-1">Harga Beli (Rp) *</label>
+        <label class="block text-sm font-medium text-gray-700 mb-1">Harga Beli (Rp) <span class="text-[#D32F2F]">*</span></label>
         <input type="number" name="harga_beli" value="{{ old('harga_beli', $asset?->harga_beli) }}" min="0" required
             class="w-full border border-gray-300 rounded-lg px-3 py-2 text-sm focus:ring-2 focus:ring-[#0A4C62] focus:outline-none">
     </div>

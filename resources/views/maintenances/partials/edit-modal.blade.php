@@ -55,7 +55,7 @@
                         <h3 class="text-sm font-semibold text-[#0A4C62] mb-3">Informasi Aset</h3>
                         <div class="grid sm:grid-cols-2 gap-4">
                             <div class="relative">
-                                <label class="text-sm font-medium text-gray-700">Nama Aset <span class="text-red-500">*</span></label>
+                                <label class="text-sm font-medium text-gray-700">Nama Aset <span class="text-[#D32F2F]">*</span></label>
                                 <input type="text" x-model="query" @focus="open = true" @input="open = true"
                                     autocomplete="off"
                                     class="mt-1 w-full border border-gray-300 rounded-lg px-3 py-2 text-sm focus:ring-2 focus:ring-[#0A4C62] focus:outline-none">
@@ -78,13 +78,13 @@
                             </div>
 
                             <div>
-                                <label class="text-sm font-medium text-gray-700">Vendor <span class="text-red-500">*</span></label>
+                                <label class="text-sm font-medium text-gray-700">Vendor <span class="text-[#D32F2F]">*</span></label>
                                 <input type="text" name="vendor" x-model="editData.vendor"
                                     class="mt-1 w-full border border-gray-300 rounded-lg px-3 py-2 text-sm focus:ring-2 focus:ring-[#0A4C62] focus:outline-none">
                             </div>
 
                             <div>
-                                <label class="text-sm font-medium text-gray-700">Kontak Vendor <span class="text-red-500">*</span></label>
+                                <label class="text-sm font-medium text-gray-700">Kontak Vendor <span class="text-[#D32F2F]">*</span></label>
                                 <input type="text" name="kontak_vendor" x-model="editData.kontak_vendor"
                                     class="mt-1 w-full border border-gray-300 rounded-lg px-3 py-2 text-sm focus:ring-2 focus:ring-[#0A4C62] focus:outline-none">
                             </div>
@@ -95,24 +95,24 @@
                         <h3 class="text-sm font-semibold text-[#0A4C62] mb-3">Detail Pemeliharaan</h3>
                         <div class="grid sm:grid-cols-2 gap-4">
                             <div class="sm:col-span-2">
-                                <label class="text-sm font-medium text-gray-700">Jenis Pemeliharaan <span class="text-red-500">*</span></label>
+                                <label class="text-sm font-medium text-gray-700">Jenis Pemeliharaan <span class="text-[#D32F2F]">*</span></label>
                                 <input type="text" name="jenis_pemeliharaan" x-model="editData.jenis_pemeliharaan"
                                     class="mt-1 w-full border border-gray-300 rounded-lg px-3 py-2 text-sm focus:ring-2 focus:ring-[#0A4C62] focus:outline-none">
                             </div>
                             <div>
-                                <label class="text-sm font-medium text-gray-700">Tanggal Pemeliharaan <span class="text-red-500">*</span></label>
+                                <label class="text-sm font-medium text-gray-700">Tanggal Pemeliharaan <span class="text-[#D32F2F]">*</span></label>
                                 <input type="date" name="maintenance_date" x-model="editData.maintenance_date"
                                     class="mt-1 w-full border border-gray-300 rounded-lg px-3 py-2 text-sm focus:ring-2 focus:ring-[#0A4C62] focus:outline-none">
                             </div>
                             <div>
-                                <label class="text-sm font-medium text-gray-700">Jadwal Jatuh Tempo <span class="text-red-500">*</span></label>
+                                <label class="text-sm font-medium text-gray-700">Jadwal Jatuh Tempo <span class="text-[#D32F2F]">*</span></label>
                                 <input type="date" name="jatuh_tempo" x-model="editData.jatuh_tempo"
                                     class="mt-1 w-full border border-gray-300 rounded-lg px-3 py-2 text-sm focus:ring-2 focus:ring-[#0A4C62] focus:outline-none">
                             </div>
                         </div>
 
                         <div class="mt-4">
-                            <label class="text-sm font-medium text-gray-700">Prioritas <span class="text-red-500">*</span></label>
+                            <label class="text-sm font-medium text-gray-700">Prioritas <span class="text-[#D32F2F]">*</span></label>
                             <div class="flex flex-wrap gap-4 mt-2">
                                 @foreach (['rendah' => 'Rendah', 'sedang' => 'Sedang', 'tinggi' => 'Tinggi'] as $value => $label)
                                     <label class="flex items-center gap-2 text-sm">
@@ -154,7 +154,7 @@
                                     <a :href="doc.url" target="_blank" class="text-sm text-[#0A4C62] truncate hover:underline" x-text="doc.original_name"></a>
                                     <button type="button"
                                         @click="if (confirm('Hapus dokumen ini?')) { $dispatch('delete-attachment', { type: 'documents', maintenanceId: editData.id, itemId: doc.id }) }"
-                                        class="text-xs text-red-500 shrink-0 hover:underline">Hapus</button>
+                                        class="text-xs text-[#D32F2F] shrink-0 hover:underline">Hapus</button>
                                 </li>
                             </template>
                         </ul>

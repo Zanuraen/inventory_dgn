@@ -6,6 +6,7 @@ use App\Http\Controllers\AssetController;
 use App\Http\Controllers\AssetHandoverController;
 use App\Http\Controllers\MaintenanceController;
 use App\Http\Controllers\DashboardController;
+use App\Http\Controllers\AssetPhotoController;
 
 Route::get('/', function () {
     return redirect()->route('login');
@@ -28,9 +29,12 @@ Route::middleware('auth')->group(function () {
 
     // === fitur data barang ====
     Route::resource('assets', AssetController::class);
-    Route::get('assets/{asset}/detail', [AssetController::class, 'detail'])->name('assets.detail');
     Route::post('assets/{asset}/handovers', [AssetHandoverController::class, 'store'])->name('handovers.store');
     Route::post('handovers/{handover}/kembalikan', [AssetHandoverController::class, 'kembalikan'])->name('handovers.kembalikan');
+    // route photo barang 
+    Route::post('assets/{asset}/photos', [AssetPhotoController::class, 'store'])->name('assets.photos.store');
+    Route::delete('assets/{asset}/photos/{photo}', [AssetPhotoController::class, 'destroy'])->name('assets.photos.destroy');
+    Route::patch('assets/{asset}/photos/{photo}/cover', [AssetPhotoController::class, 'setCover'])->name('assets.photos.set-cover');
 
     // fitur pemeliharaan
     Route::resource('maintenances', MaintenanceController::class)->except(['create', 'edit']);
@@ -42,4 +46,4 @@ Route::middleware('auth')->group(function () {
         ->name('maintenances.mark-done');
 });
 
-require __DIR__.'/auth.php';
+require __DIR__ . '/auth.php';

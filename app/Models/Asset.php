@@ -7,8 +7,9 @@ use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Relations\HasMany;
+use Illuminate\Database\Eloquent\Relations\HasOne;
 
-class Asset extends Model 
+class Asset extends Model
 {
     use HasFactory, SoftDeletes;
 
@@ -30,7 +31,7 @@ class Asset extends Model
 
     protected $casts = [
         'tanggal_beli' => 'date',
-        'harga_beli'   => 'decimal:0',
+        'harga_beli' => 'decimal:0',
     ];
 
     public function category(): BelongsTo
@@ -46,6 +47,16 @@ class Asset extends Model
     public function maintenances(): HasMany
     {
         return $this->hasMany(Maintenance::class);
+    }
+
+    public function photos(): HasMany
+    {
+        return $this->hasMany(AssetPhoto::class);
+    }
+
+    public function cover(): HasOne
+    {
+        return $this->hasOne(AssetPhoto::class)->where('is_cover', true);
     }
 
 }

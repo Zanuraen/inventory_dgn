@@ -43,6 +43,13 @@ class MaintenanceController extends Controller
             ->when($request->filled('jenis'), function ($query) use ($request) {
                 $query->where('jenis_pemeliharaan', $request->query('jenis'));
             })
+            ->when($request->filled('jenis'), function ($query) use ($request) {
+                $query->where('jenis_pemeliharaan', $request->query('jenis'));
+            })
+            ->when($request->filled('asset_id'), function ($query) use ($request) {
+                $query->where('asset_id', $request->query('asset_id'));
+            })
+            ->latest('maintenance_date')
             ->latest('maintenance_date')
             ->paginate(10)
             ->withQueryString();
@@ -65,13 +72,17 @@ class MaintenanceController extends Controller
 
         $assets = Asset::orderBy('name')->get(['id', 'name', 'code_asset']);
 
+        $filterAsset = $request->filled('asset_id')
+            ? Asset::find($request->query('asset_id'))
+            : null;
+
         $jenisOptions = Maintenance::query()
             ->select('jenis_pemeliharaan')
             ->distinct()
             ->orderBy('jenis_pemeliharaan')
             ->pluck('jenis_pemeliharaan');
 
-        return view('maintenances.index', compact('maintenances', 'stats', 'assets', 'jenisOptions'));
+        return view('maintenances.index', compact('maintenances', 'stats', 'assets', 'jenisOptions', 'filterAsset'));
     }
 
     public function store(StoreMaintenanceRequest $request)
