@@ -21,7 +21,7 @@
             >
                 <x-icon name="camera" class="w-6 h-6 text-[#0A4C62]" />
                 <div class="text-left">
-                    <p class="font-medium text-gray-800">Surat Fisik</p>
+                    <p class="font-medium text-gray-800">Surat Fisik</p>    
                     <p class="text-xs text-gray-400">Upload foto/scan surat yang sudah ditandatangani manual</p>
                 </div>
             </button>

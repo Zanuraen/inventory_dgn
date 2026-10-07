@@ -7,6 +7,9 @@ use App\Http\Controllers\AssetHandoverController;
 use App\Http\Controllers\MaintenanceController;
 use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\AssetPhotoController;
+use App\Http\Controllers\CategoryController;
+use App\Http\Controllers\SettingController;
+use App\Http\Controllers\ReportController;
 
 Route::get('/', function () {
     return redirect()->route('login');
@@ -29,9 +32,10 @@ Route::middleware('auth')->group(function () {
 
     // === fitur data barang ====
     Route::resource('assets', AssetController::class);
+    Route::get('assets/{asset}/detail', [AssetController::class, 'detail'])->name('assets.detail');
     Route::post('assets/{asset}/handovers', [AssetHandoverController::class, 'store'])->name('handovers.store');
     Route::post('handovers/{handover}/kembalikan', [AssetHandoverController::class, 'kembalikan'])->name('handovers.kembalikan');
-    // route photo barang 
+    // route photo barang
     Route::post('assets/{asset}/photos', [AssetPhotoController::class, 'store'])->name('assets.photos.store');
     Route::delete('assets/{asset}/photos/{photo}', [AssetPhotoController::class, 'destroy'])->name('assets.photos.destroy');
     Route::patch('assets/{asset}/photos/{photo}/cover', [AssetPhotoController::class, 'setCover'])->name('assets.photos.set-cover');
@@ -44,6 +48,22 @@ Route::middleware('auth')->group(function () {
         ->name('maintenances.photos.destroy');
     Route::patch('maintenances/{maintenance}/selesai', [MaintenanceController::class, 'markAsDone'])
         ->name('maintenances.mark-done');
+
+    // === fitur settings (merlin) ====
+    Route::get('/settings', [SettingController::class, 'index'])->name('settings.index');
+    Route::put('/settings/company', [SettingController::class, 'updateCompany'])->name('settings.company.update');
+    // dipakai di dalam Settings (Kategori & Kode Aset)
+    Route::resource('categories', CategoryController::class)->except('show');
+
+    // === fitur laporan (merlin) ====
+    Route::get('/laporan', [ReportController::class, 'index'])->name('reports.index');
+    Route::get('/laporan/export/pdf', [ReportController::class, 'exportPdf'])->name('reports.export.pdf');
+    Route::get('/laporan/export/excel', [ReportController::class, 'exportExcel'])->name('reports.export.excel');
+
+    // ---- Menunggu implementasi anggota tim lain ----
+    // Route::get('/notifications', [NotificationController::class, 'index'])->name('notifications.index');
+    // Route::get('/aktivitas', [ActivityLogController::class, 'index'])->name('activity.index');
+    // Route::get('/account', [AccountController::class, 'edit'])->name('account');
 });
 
 require __DIR__ . '/auth.php';
