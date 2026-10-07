@@ -13,7 +13,7 @@
             description="Jadwal servis, kalibrasi, dan perawatan aset perusahaan secara berkala untuk menjaga efisiensi operasional.">
             <x-slot:action>
                 <button type="button" @click="showAddModal = true"
-                    class="bg-[#F26522] hover:bg-[#FF7A00] text-white font-medium px-4 py-2.5 rounded-lg inline-flex items-center justify-center gap-2 transition w-full sm:w-auto">
+                    class="bg-[#F26522] hover:bg-[#FF7A00] text-white text-sm font-medium px-3.5 py-2 rounded-lg inline-flex items-center justify-center gap-1.5 transition w-full sm:w-auto">
                     <x-icon name="plus" class="w-4 h-4" />
                     Tambah Jadwal Pemeliharaan
                 </button>
