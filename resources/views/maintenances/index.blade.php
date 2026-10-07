@@ -88,8 +88,8 @@
                 class="bg-white border border-[#E5E7EB] rounded-xl p-4 flex flex-col md:flex-row gap-3">
 
                 @if (request()->filled('asset_id'))
-    <input type="hidden" name="asset_id" value="{{ request('asset_id') }}">
-@endif
+                    <input type="hidden" name="asset_id" value="{{ request('asset_id') }}">
+                @endif
                 <div class="flex-1 relative">
                     <x-icon name="search" class="w-4 h-4 text-gray-400 absolute left-3 top-1/2 -translate-y-1/2" />
                     <input type="text" name="search" value="{{ request('search') }}"
@@ -243,12 +243,7 @@
                     </table>
                 </div>
 
-                <div
-                    class="flex flex-col sm:flex-row items-center justify-between gap-3 px-4 py-3 border-t border-gray-100 text-sm text-gray-500">
-                    <span>
-                        Menampilkan {{ $maintenances->firstItem() ?? 0 }}-{{ $maintenances->lastItem() ?? 0 }}
-                        dari {{ $maintenances->total() }} data
-                    </span>
+                <div class="px-4 py-3 border-t border-gray-100">
                     {{ $maintenances->links() }}
                 </div>
             </div>
@@ -260,7 +255,8 @@
                                     <div class="flex items-start justify-between gap-3">
                                         <div class="min-w-0">
                                             <p class="font-medium text-[#111827] truncate">
-                                                {{ $m->asset?->name ?? 'Aset telah dihapus' }}</p>
+                                                {{ $m->asset?->name ?? 'Aset telah dihapus' }}
+                                            </p>
                                             <p class="text-gray-400 text-xs">{{ $m->asset?->code_asset ?? '-' }}</p>
                                         </div>
                                         @php
@@ -359,11 +355,7 @@
                     </div>
                 @endforelse
 
-                <div class="flex flex-col items-center gap-2 pt-2">
-                    <span class="text-sm text-gray-500">
-                        Menampilkan {{ $maintenances->firstItem() ?? 0 }}-{{ $maintenances->lastItem() ?? 0 }}
-                        dari {{ $maintenances->total() }} data
-                    </span>
+                <div class="pt-2">
                     {{ $maintenances->links() }}
                 </div>
             </div>

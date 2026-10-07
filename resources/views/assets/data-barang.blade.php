@@ -134,12 +134,7 @@
             </div>
 
             {{-- Pagination desktop --}}
-            <div
-                class="flex flex-col sm:flex-row items-center justify-between gap-3 px-4 py-3 border-t border-gray-100 text-sm text-gray-500">
-                <span>
-                    Menampilkan {{ $assets->firstItem() ?? 0 }}-{{ $assets->lastItem() ?? 0 }}
-                    dari {{ $assets->total() }} aset
-                </span>
+            <div class="px-4 py-3 border-t border-gray-100">
                 {{ $assets->links() }}
             </div>
         </div>
@@ -210,11 +205,8 @@
             @endforelse
 
             {{-- Pagination mobile --}}
-            <div class="flex flex-col items-center gap-2 pt-2">
-                <span class="text-sm text-gray-500">
-                    Menampilkan {{ $assets->firstItem() ?? 0 }}-{{ $assets->lastItem() ?? 0 }}
-                    dari {{ $assets->total() }} aset
-                </span>
+                        {{-- Pagination mobile --}}
+            <div class="pt-2">
                 {{ $assets->links() }}
             </div>
         </div>
