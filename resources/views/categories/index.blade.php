@@ -13,7 +13,6 @@
                 Tambah Kategori
             </a>
         </div>
-
         <table class="w-full text-sm">
             <thead>
                 <tr class="text-left border-b border-gray-200 text-gray-500">
