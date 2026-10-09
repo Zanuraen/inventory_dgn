@@ -3,6 +3,11 @@
         open: false,
         assetId: null,
         submitting: false,
+        tglPinjam: '',
+tglKembali: '',
+get tanggalSalah() {
+    return this.tglPinjam !== '' && this.tglKembali !== '' && this.tglKembali < this.tglPinjam;
+},
         previewSurat: null,
         previewSebelum: [],
         handleSuratFile(e) {
@@ -29,7 +34,7 @@
             :action="`/assets/${assetId}/handovers`"
             method="POST"
             enctype="multipart/form-data"
-            @submit="submitting = true"
+            @submit="if (tanggalSalah) { $event.preventDefault() } else { submitting = true }"
             class="p-6 space-y-5 max-h-[75vh] overflow-y-auto"
         >
             @csrf
@@ -56,15 +61,19 @@
             <div class="grid grid-cols-2 gap-4">
                 <div>
                     <label class="block text-sm font-medium text-gray-700 mb-1">Tanggal Pinjam <span class="text-[#D32F2F]">*</span></label>
-                    <input type="date" name="tanggal_pinjam" required
-                        class="w-full border border-gray-300 rounded-lg px-3 py-2 text-sm focus:ring-2 focus:ring-[#0A4C62] focus:outline-none">
+                    <input type="date" name="tanggal_pinjam" required x-model="tglPinjam"
+    class="w-full border border-gray-300 rounded-lg px-3 py-2 text-sm focus:ring-2 focus:ring-[#0A4C62] focus:outline-none">
                 </div>
                 <div>
                     <label class="block text-sm font-medium text-gray-700 mb-1">Rencana Kembali <span class="text-[#D32F2F]">*</span></label>
-                    <input type="date" name="tanggal_kembalian" required
-                        class="w-full border border-gray-300 rounded-lg px-3 py-2 text-sm focus:ring-2 focus:ring-[#0A4C62] focus:outline-none">
+                    <input type="date" name="tanggal_kembalian" required x-model="tglKembali" :min="tglPinjam"
+    :class="tanggalSalah ? 'border-[#D32F2F]' : 'border-gray-300'"
+    class="w-full border rounded-lg px-3 py-2 text-sm focus:ring-2 focus:ring-[#0A4C62] focus:outline-none">
                 </div>
             </div>
+            <p x-show="tanggalSalah" x-cloak class="text-xs text-[#D32F2F] -mt-3">
+    Rencana kembali tidak boleh lebih awal dari tanggal pinjam.
+</p>
 
             {{-- Upload scan surat fisik --}}
             <div>
@@ -111,7 +120,7 @@
                 Saya bertanggung jawab penuh atas barang ini selama masa peminjaman dan akan mengembalikannya dalam kondisi baik sesuai tanggal yang dijanjikan.
             </label>
 
-            <button type="submit" :disabled="submitting"
+            <button type="submit" :disabled="submitting || tanggalSalah"
                 class="w-full bg-[#0A4C62] text-white font-medium py-2.5 rounded-lg hover:bg-[#154E64] transition disabled:opacity-50">
                 <span x-show="!submitting">Kirim</span>
                 <span x-show="submitting">Menyimpan...</span>
