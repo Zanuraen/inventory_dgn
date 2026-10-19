@@ -1,58 +1,84 @@
-<p align="center"><a href="https://laravel.com" target="_blank"><img src="https://raw.githubusercontent.com/laravel/art/master/logo-lockup/5%20SVG/2%20CMYK/1%20Full%20Color/laravel-logolockup-cmyk-red.svg" width="400" alt="Laravel Logo"></a></p>
+# Digitelnusa Inventory
 
-<p align="center">
-<a href="https://github.com/laravel/framework/actions"><img src="https://github.com/laravel/framework/workflows/tests/badge.svg" alt="Build Status"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/dt/laravel/framework" alt="Total Downloads"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/v/laravel/framework" alt="Latest Stable Version"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/l/laravel/framework" alt="License"></a>
-</p>
+Office asset inventory web application built with Laravel, Blade, Tailwind CSS v4, Alpine.js, and MySQL.
 
-## About Laravel
+**English** | [Bahasa Indonesia](README.id.md)
 
-Laravel is a web application framework with expressive, elegant syntax. We believe development must be an enjoyable and creative experience to be truly fulfilling. Laravel takes the pain out of development by easing common tasks used in many web projects, such as:
+## Overview
 
-- [Simple, fast routing engine](https://laravel.com/docs/routing).
-- [Powerful dependency injection container](https://laravel.com/docs/container).
-- Multiple back-ends for [session](https://laravel.com/docs/session) and [cache](https://laravel.com/docs/cache) storage.
-- Expressive, intuitive [database ORM](https://laravel.com/docs/eloquent).
-- Database agnostic [schema migrations](https://laravel.com/docs/migrations).
-- [Robust background job processing](https://laravel.com/docs/queues).
-- [Real-time event broadcasting](https://laravel.com/docs/broadcasting).
+Digitelnusa Inventory helps an office record, track, and report its assets in one place: what each item is, where it is, who uses it, what condition it is in, and when it is due for maintenance.
 
-Laravel is accessible, powerful, and provides tools required for large, robust applications.
+## Features
 
-## Learning Laravel
+- **Dashboard**: summary cards (total assets, assets needing attention, active and overdue maintenance), an asset-addition trend (last 30 days vs the previous 30 days), a 7-day maintenance schedule chart, an on-time maintenance completion gauge (target 80%), assets per category, and a paginated table of the latest assets. All charts are plain SVG and CSS, with no charting library.
+- **Asset management**: create, edit, and delete assets (soft delete), unique asset codes, condition status (Baik, Rusak Ringan, Rusak Berat), quantity, user and location, purchase date and price, serial number, specification, multiple photos with a cover image, and a detail page.
+- **Handovers**: digital and physical handover forms, and asset returns.
+- **Maintenance**: schedules with due dates, priority, recurrence, cost, vendor details, documents and photos, and a "mark as done" action. Status (scheduled, overdue, done) is derived automatically.
+- **Categories**: managed from the Settings page, each with a unique code.
+- **Reports**: asset reports with PDF and Excel export.
+- **Settings**: company information.
+- **Authentication**: login and profile management (Laravel Breeze).
 
-Laravel has the most extensive and thorough [documentation](https://laravel.com/docs) and video tutorial library of all modern web application frameworks, making it a breeze to get started with the framework.
+## Tech Stack
 
-In addition, [Laracasts](https://laracasts.com) contains thousands of video tutorials on a range of topics including Laravel, modern PHP, unit testing, and JavaScript. Boost your skills by digging into our comprehensive video library.
+- Laravel (PHP 8.4)
+- Blade templates
+- Tailwind CSS v4 (design tokens live in the `@theme` block of `resources/css/app.css`)
+- Alpine.js
+- Vite
+- MySQL
 
-You can also watch bite-sized lessons with real-world projects on [Laravel Learn](https://laravel.com/learn), where you will be guided through building a Laravel application from scratch while learning PHP fundamentals.
+## Requirements
 
-## Agentic Development
+- PHP 8.4
+- Composer
+- Node.js and npm
+- MySQL (for example via XAMPP)
 
-Laravel's predictable structure and conventions make it ideal for AI coding agents like Claude Code, Cursor, and GitHub Copilot. Install [Laravel Boost](https://laravel.com/docs/ai) to supercharge your AI workflow:
+## Getting Started
 
 ```bash
-composer require laravel/boost --dev
+# 1. Clone the repository and enter the folder
+git clone https://github.com/Zanuraen/inventory_dgn.git
+cd inventory_dgn
 
-php artisan boost:install
+# 2. Install PHP and JavaScript dependencies
+composer install
+npm install
+
+# 3. Create the environment file (PowerShell: Copy-Item .env.example .env)
+cp .env.example .env
+
+# 4. Generate the application key
+php artisan key:generate
+
+# 5. Create an empty MySQL database, then set the DB_* values in .env
+
+# 6. Create the database tables
+php artisan migrate
+
+# 7. Make uploaded photos publicly reachable
+php artisan storage:link
+
+# 8. Start the frontend build and the local server (two terminals)
+npm run dev
+php artisan serve
 ```
 
-Boost provides your agent 15+ tools and skills that help agents build Laravel applications while following best practices.
+Then open `http://127.0.0.1:8000`. Keep `npm run dev` running, otherwise new Tailwind classes are not compiled.
 
-## Contributing
+## Project Structure
 
-Thank you for considering contributing to the Laravel framework! The contribution guide can be found in the [Laravel documentation](https://laravel.com/docs/contributions).
+| Path | Purpose |
+| --- | --- |
+| `app/Http/Controllers` | Request handling for assets, maintenance, categories, reports, and settings |
+| `app/Models` | Eloquent models (`Asset`, `Maintenance`, `Category`, and others) |
+| `resources/views` | Blade views, grouped by feature |
+| `resources/views/components` | Reusable components (`ui`, `charts`, `dashboard/partials`) |
+| `resources/css/app.css` | Tailwind v4 setup and design tokens |
+| `routes/web.php` | Application routes |
 
-## Code of Conduct
+## Notes
 
-In order to ensure that the Laravel community is welcoming to all, please review and abide by the [Code of Conduct](https://laravel.com/docs/contributions#code-of-conduct).
-
-## Security Vulnerabilities
-
-If you discover a security vulnerability within Laravel, please send an e-mail to Taylor Otwell via [taylor@laravel.com](mailto:taylor@laravel.com). All security vulnerabilities will be promptly addressed.
-
-## License
-
-The Laravel framework is open-sourced software licensed under the [MIT license](https://opensource.org/licenses/MIT).
+- The interface language is Indonesian.
+- Dashboard figures are computed in `DashboardController` and passed to small, reusable Blade components.
